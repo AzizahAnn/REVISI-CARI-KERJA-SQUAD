@@ -17,6 +17,7 @@ use App\Http\Controllers\Pelamar\DashboardPelamarController;
 use App\Http\Controllers\Pelamar\CariLowonganController;
 use App\Http\Controllers\Pelamar\PendaftaranController;
 use App\Http\Controllers\Pelamar\LamaranController;
+use App\Http\Controllers\ProfileController;
 
 // ========================================
 // HALAMAN UTAMA (PUBLIC - TANPA LOGIN)
@@ -109,4 +110,15 @@ Route::prefix('pelamar')->name('pelamar.')->group(function () {
         Route::get('/lamaran', [LamaranController::class, 'index'])->name('lamaran.index');
         Route::get('/lamaran/{id}', [LamaranController::class, 'detail'])->name('lamaran.detail');
     });
+});
+
+// ========================================
+// ROUTES PROFILE (SEMUA ROLE)
+// ========================================
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::put('/profile/password', [ProfileController::class, 'updatePassword'])->name('profile.updatePassword');
+    Route::post('/profile/avatar', [ProfileController::class, 'updateAvatar'])->name('profile.updateAvatar');
 });
