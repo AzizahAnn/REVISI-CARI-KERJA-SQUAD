@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\DaftarController;
 use App\Http\Controllers\Auth\LoginAdminController;
 use App\Http\Controllers\Auth\LoginPerusahaanController;
 use App\Http\Controllers\Auth\LoginPelamarController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Admin\DashboardAdminController;
 use App\Http\Controllers\Admin\VerifikasiPerusahaanController;
 use App\Http\Controllers\Admin\VerifikasiLowonganController;
