@@ -26,7 +26,6 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    // Relasi
     public function perusahaan()
     {
         return $this->hasOne(Perusahaan::class);
@@ -37,7 +36,36 @@ class User extends Authenticatable
         return $this->hasOne(Pelamar::class);
     }
 
-    // Helper method
+    public function scopeAdmin($query)
+    {
+        return $query->where('peran', 'admin');
+    }
+
+    public function scopePerusahaan($query)
+    {
+        return $query->where('peran', 'perusahaan');
+    }
+
+    public function scopePelamar($query)
+    {
+        return $query->where('peran', 'pelamar');
+    }
+
+    public function getIsAdminAttribute()
+    {
+        return $this->peran === 'admin';
+    }
+
+    public function getIsPerusahaanAttribute()
+    {
+        return $this->peran === 'perusahaan';
+    }
+
+    public function getIsPelamarAttribute()
+    {
+        return $this->peran === 'pelamar';
+    }
+
     public function adalahAdmin()
     {
         return $this->peran === 'admin';
